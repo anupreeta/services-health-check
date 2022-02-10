@@ -31,20 +31,22 @@ public class HealthCheck {
                 HttpStatus status = result.getStatusCode();
                 log.info("Status received for service {}: {}", service.getName(), status);
 
+                //String status = result.getStatusCode().is2xxSuccessful() ? String.valueOf(HttpStatus.OK) : "FAIL";
+                //service.setStatus(status);
+
                 // Check status of the service and set it accordingly
-                if (status.equals(HttpStatus.OK) | status.equals("FAIL")) {
+                if (status.equals(HttpStatus.OK)) {
                     service.setStatus(status.getReasonPhrase());
-                } else {
-                    service.setStatus("UNKNOWN");
                 }
+
 
                 // Save new status to repository
                 serviceRepository.save(service);
-                log.info("Service status saved and changed to {}", service.getStatus());
+                log.info("Service status saved", service.getStatus());
             } catch (Exception e) {
-                service.setStatus("UNKNOWN");
+                service.setStatus("FAIL");
                 serviceRepository.save(service);
-                log.info("Error in fetching status of {} with url {}. Status set to default: UNKNOWN",
+                log.info("Error in fetching status of {} with url {}. Status set to: FAIL",
                         service.getName(), service.getUrl());
                 log.error(String.valueOf(e));
             }
