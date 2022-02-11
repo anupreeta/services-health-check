@@ -28,7 +28,6 @@ function App() {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>id</TableCell>
                 <TableCell align="right">name</TableCell>
                 <TableCell align="right">url</TableCell>
                 <TableCell align="right">status</TableCell>
@@ -42,7 +41,6 @@ function App() {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {item.id}
                   </TableCell>
                   <TableCell align="right">{item.name}</TableCell>
                   <TableCell align="right">{item.url}</TableCell>
