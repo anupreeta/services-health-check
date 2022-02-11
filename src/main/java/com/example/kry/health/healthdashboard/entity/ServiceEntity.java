@@ -1,6 +1,10 @@
 package com.example.kry.health.healthdashboard.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.URL;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -12,6 +16,9 @@ public class ServiceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    @NotNull(message = "Service url should not be null")
+    @NotEmpty(message = "Service url should not be empty")
+    @URL(message = "Service url should be valid")
     private String url;
     private String status;
     private Timestamp created;
