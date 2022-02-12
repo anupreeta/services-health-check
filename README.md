@@ -1,6 +1,7 @@
 ## Solution Description
-This is an application to check health of services and periodically keeps a track of status of these added services.
-Each service is saved with details: id, name, url, status, created an dmodified.
+This is an application to check health of services and periodically keeps a track of status of these added services. The
+polling gets triggered every 30 seconds.
+Each service is saved with details: id, name, url, status, created and modified.
 
 Database runs in a docker container and is brought up using
 ```docker-compose up --build --force-recreate```
@@ -25,7 +26,12 @@ Build: gradle
 ```./gradlew clean build```
 * Run the springboot application
 ```./gradlew bootRun```
-  Here you will see that health check poll kicks off in 30 secondsand keeps polling added services
+  Here you will see that health check poll kicks off in 30 seconds and keeps polling added services.
+* Bring up react frontend
+  * cd my-app
+  * npm start 
+  * Check out the UI at `http://localhost:3000/`
+  
 * Optional: check for CRUD actions in the database inside docker
 
 ```
@@ -33,21 +39,6 @@ Build: gradle
  docker exec -it <container-name> /bin/bash
  mysql -u dev -p
  use dev;
- select * from services;
- ```
-* You can manually check REST API calls using POSTMAN or curl
-  * Give the path urls here
-* Start the react app 
-  * npm start
-* Check out the UI at http://localhost:3000/
-.
-
-docker commands:
-
-docker exec -it <container-name> /bin/bash
-mysql -u dev -p
-use dev;
-
 mysql> show tables;
 +---------------+
 | Tables_in_dev |
@@ -72,11 +63,23 @@ mysql> select * from services;
 references:
 https://howtodoinjava.com/spring-core/spring-scheduled-annotation/
 https://www.baeldung.com/spring-scheduled-tasks (fixed rate versus fixed delay)
+ ```
+* You can manually check REST API calls using POSTMAN or curl
+  * Give the path urls here
+* Start the react app 
+  * npm start
 
-https://github.com/Cybergern/kry
+.
+
+docker commands:
+
+docker exec -it <container-name> /bin/bash
+mysql -u dev -p
+use dev;
 
 Problems faced:
 1) Learnt more about diff options of Polling for @Scheduled -fixedRate and fixedDelay
 2) Working on UI was a bit challenging but was fun and learnt new stuff. Learned about MUI components and use of create-react-app
 3) SQL problem - wrong column name used lastModified, changed to modified
-4) 
+4) Difference between getById (lazy loading of entity and only reference to proxy of entity) and findById (eager loading
+of entity and immediately work on actual entity)

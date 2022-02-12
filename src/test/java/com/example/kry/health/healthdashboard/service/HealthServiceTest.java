@@ -14,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -55,6 +56,23 @@ public class HealthServiceTest {
         ServiceEntity response = target.save(createdEntity);
 
         assertEquals(createTestServiceFromEntity(createdEntity).getStatus(), response.getStatus());
+    }
+
+    @Test
+    public void testUpdateService() {
+        ServiceEntity createdEntity = createTestServiceEntity("to-update-service", "https://www.update.com");
+        System.out.println("Before update entity: " + createdEntity.getName() + createdEntity.getUrl());
+        when(repository.findById(any())).thenReturn(Optional.of(createdEntity));
+        when(repository.save(any())).thenReturn(createdEntity);
+
+        ServiceEntity response = target.update(createdEntity.getId(), ServiceModel.builder()
+                .name("hobbit-service")
+                .url("http://frodo.com/ping")
+                .build());
+        System.out.println("After update entity: " + response.getName() + response.getUrl());
+
+        assertEquals(createTestServiceFromEntity(createdEntity).getName(), response.getName());
+        assertEquals(createTestServiceFromEntity(createdEntity).getUrl(), response.getUrl());
     }
 
 
