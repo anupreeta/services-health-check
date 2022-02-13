@@ -12,9 +12,9 @@ Whenever a new service is added the first time, its status is set to default i.e
 Once the app is up, the poller (HealthCheck) gets executed every 30 seconds which send GET request to the url of the service. If it succeeds (HTTP CODE = 200) then status is updated to "OK", for failures it gets set to "FAIL"
 
 ## Frameworks used
-Frontend : React (under my-app)
-Backend: Springboot (under src) 
-Database: MySQL (under db)
+* Frontend : React (under my-app)
+* Backend: Springboot (under src) 
+* Database: MySQL (under db)
 
 ## Build system used
 Build: gradle
@@ -68,18 +68,5 @@ https://www.baeldung.com/spring-scheduled-tasks (fixed rate versus fixed delay)
   * Give the path urls here
 * Start the react app 
   * npm start
+  
 
-.
-
-docker commands:
-
-docker exec -it <container-name> /bin/bash
-mysql -u dev -p
-use dev;
-
-Problems faced:
-1) Learnt more about diff options of Polling for @Scheduled -fixedRate and fixedDelay
-2) Working on UI was a bit challenging but was fun and learnt new stuff. Learned about MUI components and use of create-react-app
-3) SQL problem - wrong column name used lastModified, changed to modified
-4) Difference between getById (lazy loading of entity and only reference to proxy of entity) and findById (eager loading
-of entity and immediately work on actual entity)
