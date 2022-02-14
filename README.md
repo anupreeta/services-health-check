@@ -4,7 +4,8 @@ polling gets triggered every 30 seconds.
 Each service is saved with details: id, name, url, status, created and modified.
 
 Database runs in a docker container and is brought up using
-```docker-compose up --build --force-recreate```
+
+``docker-compose up --build --force-recreate``
 
 init.sql script is run to create table ``services`` and populate it with first service entry.
 Database credentials are saved in application.properties under resources
@@ -58,15 +59,12 @@ mysql> select * from services;
 | 10 | bogus-service     | http://localhost:8080/services/bogus  | 2022-02-09 23:51:46 | 2022-02-09 23:51:46 | FAIL    |
 | 11 | cancel-service    | http://localhost:8080/services/cancel | 2022-02-10 00:01:52 | 2022-02-10 00:01:52 | FAIL    |
 | 12 | space-service     | http://www.space.com                  | 2022-02-10 00:09:55 | 2022-02-10 00:09:55 | UNKNOWN |
-
-
-references:
-https://howtodoinjava.com/spring-core/spring-scheduled-annotation/
-https://www.baeldung.com/spring-scheduled-tasks (fixed rate versus fixed delay)
  ```
 * You can manually check REST API calls using POSTMAN or curl
-  * Give the path urls here
-* Start the react app 
-  * npm start
-  
+  * Save service: POST http://localhost:8080/services/save and provide request body in json with name and url
+  * Get list of services: GET http://localhost:8080/services/list
+  * Retrieve details of one service: GET http://localhost:8080/services/<id> 
+  * Update name and/url of a service: POST http://localhost:8080/services/<id>, provide id of the service to be updated 
+    and request body with new name and/or url of the existing service
+  * Delete a service: DELETE http://localhost:8080/services/<id> where id is the id of the service to be deleted
 
