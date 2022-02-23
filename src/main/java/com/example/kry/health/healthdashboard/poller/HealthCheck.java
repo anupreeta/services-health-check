@@ -37,6 +37,7 @@ public class HealthCheck {
                 // Check status of the service and set it accordingly
                 if (status.equals(HttpStatus.OK)) {
                     service.setStatus(status.getReasonPhrase());
+                    service.setModified();
                 }
 
 
@@ -45,6 +46,7 @@ public class HealthCheck {
                 log.info("Service status saved", service.getStatus());
             } catch (Exception e) {
                 service.setStatus("FAIL");
+                service.setModified();
                 serviceRepository.save(service);
                 log.info("Error in fetching status of {} with url {}. Status set to: FAIL",
                         service.getName(), service.getUrl());

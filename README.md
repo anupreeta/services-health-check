@@ -48,17 +48,19 @@ mysql> show tables;
 +---------------+
 
 mysql> select * from services;
-+----+-------------------+---------------------------------------+---------------------+---------------------+---------+
-| id | name              | url                                   | created             | modified            | status  |
-+----+-------------------+---------------------------------------+---------------------+---------------------+---------+
-|  1 | test_service1     | http://test_service1:8081/            | 2022-02-08 18:30:36 | 2022-02-08 18:30:36 | FAIL    |
-|  5 | incorrect-service | http://localhost:8080/services/wrong  | 2022-02-09 22:56:43 | 2022-02-09 22:56:43 | FAIL    |
-|  6 | incorrect-service | http://localhost:8080/services/error  | 2022-02-09 23:02:32 | 2022-02-09 23:02:32 | FAIL    |
-|  7 | fail-service      | http://localhost:8080/services/fail   | 2022-02-09 23:31:49 | 2022-02-09 23:31:49 | FAIL    |
-|  8 | search-service    | http://www.google.com                 | 2022-02-09 23:41:21 | 2022-02-09 23:41:21 | OK      |
-| 10 | bogus-service     | http://localhost:8080/services/bogus  | 2022-02-09 23:51:46 | 2022-02-09 23:51:46 | FAIL    |
-| 11 | cancel-service    | http://localhost:8080/services/cancel | 2022-02-10 00:01:52 | 2022-02-10 00:01:52 | FAIL    |
-| 12 | space-service     | http://www.space.com                  | 2022-02-10 00:09:55 | 2022-02-10 00:09:55 | UNKNOWN |
+| id | name              | url                                   | created             | modified            | status |
++----+-------------------+---------------------------------------+---------------------+---------------------+--------+
+|  1 | test_service1     | http://test_service1:8081/            | 2022-02-08 18:30:36 | 2022-02-23 21:44:30 | FAIL   |
+|  5 | incorrect-service | http://localhost:8080/services/wrong  | 2022-02-09 22:56:43 | 2022-02-23 21:44:31 | FAIL   |
+|  6 | incorrect-service | http://localhost:8080/services/error  | 2022-02-09 23:02:32 | 2022-02-23 21:44:31 | FAIL   |
+|  7 | youtube           | https://www.youtube.com/              | 2022-02-09 23:31:49 | 2022-02-23 21:44:32 | OK     |
+| 10 | docker            | https://hub.docker.com/               | 2022-02-09 23:51:46 | 2022-02-23 21:44:32 | OK     |
+| 11 | cancel-service    | http://localhost:8080/services/cancel | 2022-02-10 00:01:52 | 2022-02-23 21:44:32 | FAIL   |
+| 12 | space-service     | http://www.space.com                  | 2022-02-10 00:09:55 | 2022-02-10 00:09:55 | FAIL   |
+| 14 | trial-service     | http://www.google.com                 | 2022-02-10 00:18:10 | 2022-02-23 21:44:33 | OK     |
+| 15 | week-service      | https://www.vecka.nu                  | 2022-02-10 00:23:46 | 2022-02-23 21:44:33 | OK     |
+| 16 | music             | https://www.spotify.com               | 2022-02-11 18:30:23 | 2022-02-23 21:44:34 | OK     |
++----+-------------------+---------------------------------------+---------------------+---------------------+--------+
  ```
 * You can manually check REST API calls using POSTMAN or curl
   * Save service: POST http://localhost:8080/services/save and provide request body in json with name and url
